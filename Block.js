@@ -11,6 +11,7 @@ module.exports = class Block {
     this.previous = previous;
     this.data = data;
     this.date = new Date();
+    this.nonce = 1;
     this.id = this.generateId();
   }
 
@@ -33,4 +34,10 @@ module.exports = class Block {
   isValid(previous) {
     return this.isIdValid() && this.isPreviousIdValid(previous);
   }
+
+  mine(){
+    do{
+
+    } while(true);
+  } 
 }
