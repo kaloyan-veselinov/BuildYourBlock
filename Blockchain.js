@@ -18,6 +18,14 @@ module.exports = class Blockchain {
   }
 
   isValid() {
-    // Modifier ici.
+    let valid = true;
+    let previous = null;
+    let i = 0;
+    while (i<this.chain.length && valid){
+      valid = this.chain[i].isValid(previous);
+      previous = this.chain[i];
+      i++;
+    }
+    return valid;
   }
 }
