@@ -3,7 +3,10 @@ function generateId() {
 }
 
 module.exports = class Block {
-  // Complétez le constructeur
   constructor(previous, data) {
+    this.previous = previous;
+    this.data = data;
+    this.id = generateId();
+    this.date = new Date();
   }
 }
