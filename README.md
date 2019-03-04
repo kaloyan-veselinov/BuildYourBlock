@@ -31,11 +31,11 @@ Dans la class Block, ajoutez une propriété `nonce` et une fonction `miner` qui
 * repeat : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/repeat
 * startsWith : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/startsWith
 
-Modifiez `index.js` pour miner les trois premiers blocks avec une difficulté de 5.
+Ne minez pas dans le constructeur ! Modifiez `index.js` pour miner les trois premiers blocks avec une difficulté de 5.
 
 Ça met un peu de temps ? Parfait ! Sinon augmentez la difficulté.
 
-Modifier la fonction de vérification pour qu'elle vérifie que la difficulté est bien respectée.
+###### Modifier la fonction de vérification `isValid` de `Block` pour qu'elle vérifie que la difficulté est bien respectée.
 
 Maintenant, votre Blockchain est beaucoup plus difficile à attaquer !
 
