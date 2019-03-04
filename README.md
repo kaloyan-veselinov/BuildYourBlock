@@ -18,7 +18,7 @@ Comment faire pour qu'un block prenne du temps à ajouter à la chaine ?
 
 Indice : ça a un rapport avec la fonction de hachage.
 
-Les fonctions de hachage comme SHA ont une propriété très intéressante, on ne peut pas prédire l'empreinte qu'une donnée va produire avant d'avoir exécuter la fonction. L'astuce consiste donc à mettre une contrainte sur la forme que doit avoir l'empreinte pour être un identifiant valide de block. Par exemple, on peut contraindre l'empreinte à avoir 5 zéros au début.
+Les fonctions de hachage comme SHA ont une propriété très intéressante, on ne peut pas prédire l'empreinte qu'une donnée va produire avant d'avoir exécuté la fonction. L'astuce consiste donc à mettre une contrainte sur la forme que doit avoir l'empreinte pour être un identifiant valide de block. Par exemple, on peut contraindre l'empreinte à avoir 5 zéros au début.
 
 Maintenant, il faut trouver une empreinte qui commence par 5 zéros pour que ce soit un identifiant valide. Oui mais l'empreinte de mes blocks n'a pas 5 zéros, comment je fais pour produire une nouvelle empreinte ?
 
@@ -47,7 +47,7 @@ J'ai ajouté un fichier `rythme.js` qui contient un code permettant de simuler u
 
 ###### Observez la simulation. Que pouvez-vous dire sur le temps de calcule d'un block ?
 
-###### Essayez de changer la difficulté, que ce passe-t'il sur le temps de calcule ?
+###### Essayez de changer la difficulté, que se passe-t'il sur le temps de calcule ?
 
 ###### Quand vous exécutez `index.js` combien de temps il faut pour miner un block ? Y-a-t'il une différence ? Pourquoi ?
 
