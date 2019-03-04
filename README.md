@@ -13,6 +13,10 @@ git clone https://github.com/dreimert/BuildYourBlock.git
 cd BuildYourBlock
 ```
 
+## Installation de node
+
+https://github.com/dreimert/dia-td1#installation-de-node
+
 ## Au commencement fut le block
 
 Dans une blockchain, il y a block. Un block est un ensemble d'informations et quand les blocks sont mis bout-à-bout, ils forment une chaîne : la blockchain !
@@ -23,7 +27,7 @@ Commençons avec une structure de block assez simple :
 * Un identifiant de parent : l'identifiant du block qui précède dans la chaîne. Cela nous permet de remonter la chaîne jusqu'à son origine.
 * Des données : pour le moment, une simple chaîne de caractères.
 
-J'ai écrit le fichier `index.js` suivant :
+J'ai écrit le fichier `etape-1.js` suivant :
 
 ```Javascript
 const Block = require("./Block");
@@ -37,7 +41,7 @@ console.log([first, second, third]);
 
 J'ai aussi commencé à écrire le fichier `Block.js` que vous devez compléter.
 
-Quand c'est fini, dans un terminal placé dans ce dossier : `node ./index.js`. Vous devriez voir quelque chose comme cela :
+Quand c'est fini, dans un terminal placé dans ce dossier : `node ./etape-1.js`. Vous devriez voir quelque chose comme cela :
 
 ```
 [ Block<
@@ -56,7 +60,7 @@ Quand c'est fini, dans un terminal placé dans ce dossier : `node ./index.js`. V
 
 C'est bon ? Magnifique ! Vous avez une première blockchain ! Bon, par contre, elle n'est  pas fonctionnelle... Quand un block est ajouté dans la Blockchain, il n'est plus modifiable. Ici, rien ne vous empêche de modifier ce que vous voulez.
 
-###### Par exemple, complétez le code d'index.js en modifiant les données du troisième block.
+###### Par exemple, complétez le code de `etape-1.js` en modifiant les données du troisième block.
 
 ## Prenons un peu de hash
 
@@ -98,12 +102,15 @@ La fonction suivante prend en entrée une chaîne de caractère et retourne l'em
 ```Javascript
 const crypto = require('crypto');
 
-function getHash(unMotDoux) {
-  return crypto.createHash('sha256').update(unMotDoux, 'utf8').digest('hex');
+class Block {
+  getHash() {
+    const unMotDoux = "Votre mot doux";
+    return crypto.createHash('sha256').update(unMotDoux, 'utf8').digest('hex');
+  }
 }
 ```
 
-Modifier la class Block pour lui ajouter la fonction getHash qui calcule l'empreinte correspondant au block. Pour calculer cette empreinte, vous devez utiliser l'identifiant du block précédent et les données contenues dans le block.
+Modifiez la `class Block` pour lui ajouter la fonction `getHash()` qui calcule l'empreinte correspondant au block. Pour calculer cette empreinte, vous devez utiliser l'identifiant du block précédent et les données contenues dans le block.
 
 Exemple de concaténation :
 
@@ -134,14 +141,12 @@ Maintenant, essayez de modifier le premier élément de la chaîne.
 
 ## Passer entre les mailles du filet
 
-Modifiez la fonction `isValid` pour qu'elle vérifie que l'id du block correspond à son contenu.
+Modifiez la fonction `isValid()` pour qu'elle vérifie que l'id du block correspond à son contenu.
 
-###### Comme précédemment, complétez le code d'index.js en modifiant les données du troisième block. Que ce passe t'il ?
+###### Comme précédemment, complétez le code de `etape-1.js` en modifiant les données du troisième block. Que ce passe t'il ?
 
 ## Suite
 
 Vous avez survécu ? Cool ! Passons à l'étape suivante.
-
-Annulez les modifications de index.js : `git checkout index.js`.
 
 Aller à l'étape 2 : `git checkout etape-2`.
