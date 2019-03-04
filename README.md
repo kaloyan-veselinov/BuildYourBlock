@@ -140,4 +140,8 @@ Modifiez la fonction `isValid` pour qu'elle vérifie que l'id du block correspon
 
 ## Suite
 
-Vous avez survécu ? Cool ! Passons à l'étape suivante : `git checkout etape-2`.
+Vous avez survécu ? Cool ! Passons à l'étape suivante.
+
+Annulez les modifications de index.js : `git checkout index.js`.
+
+Aller à l'étape 2 : `git checkout etape-2`.
