@@ -35,7 +35,7 @@ Ne minez pas dans le constructeur ! Modifiez `index.js` pour miner les trois pre
 
 Ça met un peu de temps ? Parfait ! Sinon augmentez la difficulté.
 
-###### Modifier la fonction de vérification `isValid` de `Block` pour qu'elle vérifie que la difficulté est bien respectée.
+###### Modifier la fonction de vérification `isValid` de `Block` en mettant en paramètre la difficulté pour qu'elle vérifie que la difficulté est bien respectée.
 
 Maintenant, votre Blockchain est beaucoup plus difficile à attaquer !
 
