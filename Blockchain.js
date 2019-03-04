@@ -19,7 +19,8 @@ module.exports = class Blockchain extends BlockchainTool {
     }
   }
 
-  isValid() {
+  // Retourne un boolean qui indique si la blockchain est valide
+  isValid(DIFFICULTY) {
     // Modifier ici.
     return false;
   }

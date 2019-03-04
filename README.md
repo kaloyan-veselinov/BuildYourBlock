@@ -2,7 +2,11 @@
 
 ## Je valide !
 
-Maintenant que l'on peut vérifier si un block est valide, vérifions que notre Blockchain l'est aussi. Faisons-le ! J'ai rajouté un nouveau fichier `Blockchain.js` et modifié `index.js`. Dans `Blockchain.js`, écrivez la fonction `isValid`. Pour chaque block, elle doit faire deux choses : vérifier que le block est valide et que l'identifiant du block précédent correspond bien.
+Maintenant que l'on peut vérifier si un block est valide, vérifions que notre Blockchain l'est aussi. Faisons-le ! J'ai rajouté un nouveau fichier `Blockchain.js`. Dans `Blockchain.js`, écrivez la fonction `isValid`. Pour chaque block, elle doit faire deux choses : vérifier que le block est valide et que l'identifiant du block précédent correspond bien.
+
+```Bash
+node etape-2.js
+```
 
 Bon, vous êtes en mesure de vérifier que la chaîne est valide, bravo !
 
@@ -31,7 +35,7 @@ Dans la class Block, ajoutez une propriété `nonce` et une fonction `miner` qui
 * repeat : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/repeat
 * startsWith : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/startsWith
 
-Ne minez pas dans le constructeur ! Modifiez `index.js` pour miner les trois premiers blocks avec une difficulté de 5.
+Pour voir ce qui est attendu, regardez et exécutez le fichier `etape-2-miner.js`.
 
 Ça met un peu de temps ? Parfait ! Sinon augmentez la difficulté.
 
@@ -41,17 +45,25 @@ Maintenant, votre Blockchain est beaucoup plus difficile à attaquer !
 
 ## Trouvons le bon rythme
 
-Une difficulté de 5, c'est bien mais ça semble un peu arbitraire comme valeur. Pour notre blockchain, j'aimerais qu'il y ait un block toutes les 10 secondes qui soit ajouté à la blockchain. Autre contrainte, si tous les participants ont la même puissance de calcul, que le participant soit tiré aléatoirement.
+Une difficulté de 5, c'est bien mais ça semble un peu arbitraire comme valeur. Pour notre blockchain, j'aimerais qu'il y ait un block toutes les 10 secondes qui soit ajouté à la blockchain. Autre contrainte, si tous les participants ont la même puissance de calcul, que le participant soit tiré aléatoirement mais c'est notre algorithme de hash qui nous garantie ça.
 
-J'ai ajouté un fichier `rythme.js` qui contient un code permettant de simuler une blockchain avec 5 participants ayant la même puissance de calcul. Essayez de comprendre ce que fait ce code. Vérifiez que votre code fonctionne correctement en exécutant le fichier : `node rythme.js`.
+J'ai ajouté un fichier `rythme.js` qui contient un code permettant de simuler une blockchain avec 5 participants ayant la même puissance de calcul. Essayez de comprendre se que fait ce code. Vérifiez que votre code fonctionne correctement en exécutant le fichier : `node rythme.js`.
 
 ###### Observez la simulation. Que pouvez-vous dire sur le temps de calcul d'un block ?
 
 ###### Essayez de changer la difficulté, que se passe-t-il sur le temps de calcul ?
 
-###### Quand vous exécutez `index.js` combien de temps il faut pour miner un block ? Y a-t-il une différence ? Pourquoi ?
-
 ###### Sur votre machine, quelle est la bonne valeur de la difficulté ?
+
+Maintenant, voyons ce qu'il se passe si tous les participants n'ont pas la même puissance de calcul.
+
+Modifiez `rythme.js` pour diminuer la difficulté et augmenter le nombre de blocks recherchés à 1000.
+
+###### Que pouvez-vous dire sur la répartition des blocks ?
+
+Modifiez encore `rythme.js` pour mettre des puissances de calcul différentes aux participants.
+
+###### Est-ce qu'il y a un changement ?
 
 ## Suite
 
