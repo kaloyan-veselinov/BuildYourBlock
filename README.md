@@ -150,3 +150,5 @@ Modifiez la fonction `isValid()` pour qu'elle vérifie que l'id du block corresp
 Vous avez survécu ? Cool ! Passons à l'étape suivante.
 
 Aller à l'étape 2 : `git checkout etape-2`.
+
+Pour continuer à lire le sujet soit vous lisez le fichier `README.md` sur votre machine soit sur GitHub, au-dessus de la liste des fichiers, vous pouvez cliquer sur `Branch: master` et selectionner `etape-2`.
