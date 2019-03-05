@@ -46,16 +46,16 @@ Quand c'est fini, dans un terminal placé dans ce dossier : `node ./etape-1.js`.
 ```
 [ Block<
        id: <xxxxxx>
-       prev: null
-       val: 'First !' >,
+       previous: null
+       data: 'First !' >,
   Block<
        id: <yyyyyy>
-       prev: <xxxxxx>
-       val: 'Second :)' >,
+       previous: <xxxxxx>
+       data: 'Second :)' >,
   Block<
        id: <zzzzzz>
-       prev: <yyyyyy>
-       val: 'Vous commencez à voir le principe ?' > ]
+       previous: <yyyyyy>
+       data: 'Vous commencez à voir le principe ?' > ]
 ```
 
 C'est bon ? Magnifique ! Vous avez une première blockchain ! Bon, par contre, elle n'est  pas fonctionnelle... Quand un block est ajouté dans la Blockchain, il n'est plus modifiable. Ici, rien ne vous empêche de modifier ce que vous voulez.
@@ -123,16 +123,16 @@ Vous obtenez exactement ça :
 ```
 [ Block<
        id: '9b1d3da5be217ffa1622466bf7c2e5fea827c4ee7c32af170da00f89ed49356d'
-       prev: null
-       val: 'First !' >,
+       previous: null
+       data: 'First !' >,
   Block<
        id: 'ffb3dad005c79eb32345f2506189368ef5556dbacd05c8b94d59907ce64bd722'
-       prev: '9b1d3da5be217ffa1622466bf7c2e5fea827c4ee7c32af170da00f89ed49356d'
-       val: 'Second :)' >,
+       previous: '9b1d3da5be217ffa1622466bf7c2e5fea827c4ee7c32af170da00f89ed49356d'
+       data: 'Second :)' >,
   Block<
        id: '66d623f52b392c4ddec3129a25a9e5b992d71b062aff0d838fec16cda7527dcf'
-       prev: 'ffb3dad005c79eb32345f2506189368ef5556dbacd05c8b94d59907ce64bd722'
-       val: 'Vous commencez à voir le principe ?' > ]
+       previous: 'ffb3dad005c79eb32345f2506189368ef5556dbacd05c8b94d59907ce64bd722'
+       data: 'Vous commencez à voir le principe ?' > ]
 ```
 
 Maintenant, essayez de modifier le premier élément de la chaîne.
