@@ -13,7 +13,8 @@ module.exports = class Block extends BlockTool {
 
   // Complétez le constructeur
   constructor(previous, data) {
-    super()
+    super() // Obligatoire car on hérite de BlockTool
+    // Le mot clé `this` permet d'accèder aux propriétés de l'object depuis ses méthodes.
     this.previous = previous;
     //...
   }

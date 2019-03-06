@@ -17,6 +17,14 @@ cd BuildYourBlock
 
 https://github.com/dreimert/dia-td1#installation-de-node
 
+## Objectif
+
+Le buts de cette étape sont :
+
+* Comprendre la notion de `Block`.
+* Comprendre la notion de fonction de hachage.
+* Comprendre comment l'utilisation de fonction de hachage permet de détecter une modification de la chaîne.
+
 ## Au commencement fut le block
 
 Dans une blockchain, il y a block. Un block est un ensemble d'informations et quand les blocks sont mis bout-à-bout, ils forment une chaîne : la blockchain !
@@ -58,7 +66,7 @@ Quand c'est fini, dans un terminal placé dans ce dossier : `node ./etape-1.js`.
        data: 'Vous commencez à voir le principe ?' > ]
 ```
 
-C'est bon ? Magnifique ! Vous avez une première blockchain ! Bon, par contre, elle n'est  pas fonctionnelle... Quand un block est ajouté dans la Blockchain, il n'est plus modifiable. Ici, rien ne vous empêche de modifier ce que vous voulez.
+C'est bon ? Magnifique ! Vous avez une première blockchain ! Bon, par contre, elle n'est  pas fonctionnelle... Quand un block est ajouté dans la Blockchain, il n'est plus modifiable. Ici, rien ne vous empêche de modifier ce que vous voulez et vous n'avez aucun moyen de le détecter.
 
 ###### Par exemple, complétez le code de `etape-1.js` en modifiant les données du troisième block.
 
@@ -96,6 +104,15 @@ Une idée ?
 Cool !
 
 On va calculer l'empreinte du block avec cette fonction et on va utiliser cette empreinte comme identifiant du block. Si on modifie le block, son empreinte change donc son `id` change ! Mais cette `id` est utilisé dans le block suivant, ce qui modifie son empreinte. Et ainsi de suite jusqu'au dernier block de la chaîne. On va tester plus loin.
+
+     Block 1                   Block 2                         Block 3
+    +-------------------+     +-------------------------+     +-------------------------+
+    |                   |     |                         |     |                         |
+    | id: <example: 42> +<-+  | id: <example: 26>       +<-+  | id: <example: 59>       |
+    | previous: null,   |  +--+ previous: <exemple: 42> |  +--+ previous: <exemple: 26> |
+    | data: "First !"   |     | data: "Second :)"       |     | data: "Blabla..."       |
+    |                   |     |                         |     |                         |
+    +-------------------+     +-------------------------+     +-------------------------+
 
 La fonction suivante prend en entrée une chaîne de caractère et retourne l'empreinte correspondante.
 
@@ -151,4 +168,4 @@ Vous avez survécu ? Cool ! Passons à l'étape suivante.
 
 Aller à l'étape 2 : `git checkout etape-2`.
 
-Pour continuer à lire le sujet soit vous lisez le fichier `README.md` sur votre machine soit sur GitHub, au-dessus de la liste des fichiers, vous pouvez cliquer sur `Branch: master` et selectionner `etape-2`.
+Pour continuer à lire le sujet soit vous lisez le fichier `README.md` sur votre machine soit sur GitHub, au-dessus de la liste des fichiers, vous pouvez cliquer sur `Branch: master` et sélectionner `etape-2`.
