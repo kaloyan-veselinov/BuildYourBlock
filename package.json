@@ -1,5 +1,5 @@
 {
-  "name": "tutoblockchain",
+  "name": "build-your-block",
   "version": "1.0.0",
   "description": "Tutoriel pour développer une Blockchain depuis zéro.",
   "private": true,
@@ -13,5 +13,5 @@
     "tutorial"
   ],
   "author": "Damien Reimert",
-  "license": "ISC"
+  "license": "CC BY-SA"
 }

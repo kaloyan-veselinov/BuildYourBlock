@@ -5,16 +5,8 @@
 const util = require('util');
 
 class BlockTool {
-
-  // Indique si le block est valide
-  isValid() { return false; }
-
   // Pour l'affichage dans la console
   [util.inspect.custom](depth, options){
-    if (!this.isValid()) {
-      return options.stylize('[InvalidBlock]', 'regexp');
-    }
-
     if (depth < 0) {
       return options.stylize('[Block]', 'special');
     }
@@ -28,27 +20,15 @@ class BlockTool {
       return util.inspect(value, newOptions)
           .replace(/\n/g, `\n${padding}`);
     };
-    const inner = `\n${padding}id: ${format(this.id)}\n${padding}prev: ${format(this.previous)}\n${padding}val: ${format(this.data)}`
+    const inner = `\n${padding}id: ${format(this.id)}\n${padding}previous: ${format(this.previous)}\n${padding}data: ${format(this.data)}`
     return `${options.stylize('Block', 'special')}< ${inner} >`;
   }
 }
 
 class BlockchainTool {
-  isValid() { return false; }
-
   [util.inspect.custom](depth, options){
     if (depth < 0) {
-      if (!this.isValid()) {
-        return options.stylize('[InvalidBlockchain]', 'regexp');
-      } else {
-        return options.stylize('[Blockchain]', 'special');
-      }
-    }
-
-    let msg = options.stylize('Blockchain', 'special');
-
-    if (!this.isValid()) {
-      msg = options.stylize("InvalidBlockchain", 'regexp');
+      return options.stylize('[Blockchain]', 'special');
     }
 
     const newOptions = Object.assign({}, options, {
@@ -67,7 +47,7 @@ class BlockchainTool {
       return `\n${border}\n${boxWrap}\n${border}`;
     }).join('\n  /\\\n  ||');
 
-    return `${msg} < ${chain} >`;
+    return `${options.stylize('Blockchain', 'special')} < ${chain} >`;
   }
 }
 

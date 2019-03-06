@@ -47,7 +47,7 @@ Maintenant, votre Blockchain est beaucoup plus difficile à attaquer !
 
 Une difficulté de 5, c'est bien mais ça semble un peu arbitraire comme valeur. Pour notre blockchain, j'aimerais qu'il y ait un block toutes les 10 secondes qui soit ajouté à la blockchain. Autre contrainte, si tous les participants ont la même puissance de calcul, que le participant soit tiré aléatoirement mais c'est notre algorithme de hash qui nous garantie ça.
 
-J'ai ajouté un fichier `rythme.js` qui contient un code permettant de simuler une blockchain avec 5 participants ayant la même puissance de calcul. Essayez de comprendre se que fait ce code. Vérifiez que votre code fonctionne correctement en exécutant le fichier : `node rythme.js`.
+J'ai ajouté un fichier `etape-2-rythme.js` qui contient un code permettant de simuler une blockchain avec 5 participants ayant la même puissance de calcul. Essayez de comprendre se que fait ce code. Vérifiez que votre code fonctionne correctement en exécutant le fichier : `node etape-2-rythme.js`.
 
 ###### Observez la simulation. Que pouvez-vous dire sur le temps de calcul d'un block ?
 
@@ -57,11 +57,11 @@ J'ai ajouté un fichier `rythme.js` qui contient un code permettant de simuler u
 
 Maintenant, voyons ce qu'il se passe si tous les participants n'ont pas la même puissance de calcul.
 
-Modifiez `rythme.js` pour diminuer la difficulté et augmenter le nombre de blocks recherchés à 1000.
+Modifiez `etape-2-rythme.js` pour diminuer la difficulté et augmenter le nombre de blocks recherchés à 1000.
 
 ###### Que pouvez-vous dire sur la répartition des blocks ?
 
-Modifiez encore `rythme.js` pour mettre des puissances de calcul différentes aux participants.
+Modifiez encore `etape-2-rythme.js` pour mettre des puissances de calcul différentes aux participants.
 
 ###### Est-ce qu'il y a un changement ?
 
