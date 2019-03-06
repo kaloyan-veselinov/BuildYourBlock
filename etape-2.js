@@ -13,4 +13,13 @@ blockchain.add(third);
 
 console.log("isValid:", blockchain.isValid());
 
-console.log(blockchain);
+second.data = "Hack";
+
+console.log("Un hacker passe par ici");
+console.log("isValid:", blockchain.isValid());
+
+second.data = "Hack moins grossier";
+second.id = second.getHash(;)
+
+console.log("Et un autre par là");
+console.log("isValid:", blockchain.isValid());

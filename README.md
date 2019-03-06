@@ -1,5 +1,11 @@
 # Tutoriel Blockchain : de zéro vers ...
 
+## Objectifs
+
+* Comprendre la notion de blockchain.
+* Comprendre la notion de preuve de travail.
+* Comprendre la notion de difficulté.
+
 ## Je valide !
 
 Maintenant que l'on peut vérifier si un block est valide, vérifions que notre Blockchain l'est aussi. Faisons-le ! J'ai rajouté un nouveau fichier `Blockchain.js`. Dans `Blockchain.js`, écrivez la fonction `isValid`. Pour chaque block, elle doit faire deux choses : vérifier que le block est valide et que l'identifiant du block précédent correspond bien.

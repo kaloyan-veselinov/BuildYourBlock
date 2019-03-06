@@ -20,7 +20,7 @@ class BlockTool {
       return util.inspect(value, newOptions)
           .replace(/\n/g, `\n${padding}`);
     };
-    const inner = `\n${padding}id: ${format(this.id)}\n${padding}previous: ${format(this.previous)}\n${padding}data: ${format(this.data)}`
+    const inner = `\n${padding}id: ${format(this.id)}\n${padding}previous: ${format(this.previous)}\n${padding}data: ${format(this.data)}\n${padding}nonce: ${format(this.nonce)}`
     return `${options.stylize('Block', 'special')}< ${inner} >`;
   }
 }
