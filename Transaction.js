@@ -2,6 +2,10 @@ const crypto = require('crypto');
 
 const RSATools = require('./RSATools');
 
+function hash(data) {
+  return crypto.createHash('sha256').update(data, 'utf8').digest('hex');
+}
+
 // Représente une transaction ou un chèque.
 // Souvent abrégé en tx quand passé en variable.
 class Transaction {
@@ -12,8 +16,9 @@ class Transaction {
     inputs,
     outputs
   ) {
-    // ...
-    this.id = ''; // ...
+    this.inputs = inputs;
+    this.outputs = outputs;
+    this.id = hash(Arrays.toString(inputs).concat(Arrays.toString(outputs)));
   }
 
   // Retourne le hash du Tx : hash des inputs + hash des outputs
@@ -28,33 +33,43 @@ class Input {
   // @params index : index du Output dans le outputs de la transaction
   // @params signature : signature du destinataire du Output
   constructor(tx, index, signature = undefined) {
-    // ...
+    this.tx = tx;
+    this.index = index;
+  }
+
+  stringify(){
+    return this.tx.id.concat(index), privateKeyString;
   }
 
   // Calcule la signature : tx.id + index
   sign(privateKeyString) {
-    this.signature = "/* ... */";
+    this.signature = RSATools.sign(this.stringify());
   }
 
   // Retourne le hash du Input : tx.id + index
   getHash() {
-    // ...
+    return hash(this.stringify())
   }
 
   // Retourne le montant de l'output utilisé
   montant() {
-    return /* ... */;
+    return this.tx.inputs[this.index].montant;
   }
 }
 
 class Output {
   constructor(montant, destinataire) {
-    // ...
+    this.montant = montant;
+    this.destinataire =destinataire;
+  }
+
+  stringify(){
+    return this.destinataire.concat(this.montant);
   }
 
   // Retourne le hash du Output : montant + destinataire
   getHash() {
-    // ...
+    return hash(this.stringify());
   }
 }
 
