@@ -72,7 +72,7 @@ Regardez `etape-3-rsa.js` et vous n'avez plus qu'à compléter le fichier `RSATo
 
 ## Build Your Block Coin
 
-On a maintenant une solution pour signer et vérifier, il faut maintenant de l'argent à transférer.
+On a maintenant une solution pour signer et vérifier, il faut maintenant de l'argent à transférer. Allons voir les différents problèmes que l'on veut résoudre, proposer une solution et voir les problèmes de cette solution. On recommence jusqu'à converger vers une solution satisfaisante.
 
 Créons une nouvelle unité, le Build Your Block coin ou BYB. Disons qu'un BYB vaut un centime. Dans ce contexte, que devient la phrase : Moi, Alice transfère 10€ à Bob ?
 
@@ -86,7 +86,7 @@ C'est une transaction de la forme :
 
 Et pour signer le chèque :
 
-* signature : source + destination + valeur signé avec la clé privée de Alice
+* signature : signé avec la clé privée de Alice de source + destination + valeur
 
 On peut le représenter comme cela :
 
@@ -117,7 +117,24 @@ On veut que quelque-chose soit unique ? On a déjà eu ce problème, non ? Quell
 
 Vous avez trouvé ?
 
-Et si on mettait à nos transactions un id calculé à partir du contenu de celle-ci ? C'est cool ça, mais je vois déjà plein de choses qu'il va falloir vérifier. Il va falloir vérifier que la transaction est unique dans la blockchain, si elle est dans la blockchain, je ne peux pas l'ajouter au block courant. Mais pour ça, il faut avoir toute la blockchain et la parcourir à la recherche de transaction identique. Couteux mais faisable.
+Et si on mettait à nos transactions un id calculé à partir du contenu de celle-ci ? C'est cool ça.
+
+     Transaction 2
+    +--------------------------------------------------+
+    |                                                  |
+    | id: <hash(source + destination + value)>         |
+    | source: <Alice public key>                       |
+    | destination: <Bob public key>                    |
+    | value: 1000                                      |
+    |                                                  |
+    +--------------------------------------------------+
+    |                                                  |
+    | signature: <Alice.sign(id)>                      |
+    |                                                  |
+    +--------------------------------------------------+
+
+
+Je vois déjà plein de choses qu'il va falloir vérifier. Il va falloir vérifier que la transaction est unique dans la blockchain, si elle est dans la blockchain, je ne peux pas l'ajouter au block courant. Mais pour ça, il faut avoir toute la blockchain et la parcourir à la recherche de transaction identique. Couteux mais faisable.
 
 Autre chose, si je veux faire deux transactions de 1000 BYB à Bob, je ne peux pas car leur signature sera la même ! Je dois rajouter une autre information comme la date et/ou un nonce.
 
@@ -172,7 +189,7 @@ Une sortie est un `Output`. Un `Output` aura un montant, un destinataire et un h
      |                                         |
      +-----------------------------------------+
 
-Une sortie est **dépensée** quand une entrée la référence. La liste des sorties non dépensées pointant vers votre clé publique représente le solde de votre compte.
+Une sortie est **dépensée** quand une entrée la référence. La liste des sorties non dépensées pointant vers votre clé publique représente le solde de votre compte. On ne peut pas dépenser partiellement une sortie.
 
 Une entrée est un `Input`. Un `Input` représente la sortie d'une transaction précédente, elle contient une référence à la transaction précédente et l'index de la sortie que l'on veut utiliser. Elle contient aussi la signature du destinataire de la sortie référencée. Cette signature prouve que l'utilisateur a le droit d'utiliser la sortie.
 
@@ -182,11 +199,13 @@ Une entrée est un `Input`. Un `Input` représente la sortie d'une transaction p
     | tx: <ref une transaction>   |
     | index: <index de la sortie> |
     | hash: <hash(tx.id + index)> |
-    | signature: <sign(hash)>     |
+    | signature: <sign(hash)>     | <---- Signature qui sert de preuve de l'identité d'Alice
     |                             |
     +-----------------------------+
 
-Dans l'exemple suivant, `Transaction 0` est une transaction sans entée. On peut faire le parallèle avec le block generis qui n'avais pas de `previous`. La `Transaction 1` utilise la sortie de `Transaction 0` comme entrée et produit deux sorties.
+Les sorties doivent être entièrement utilisés mais je ne veux pas qu'un utilisateur puisse créer ou détruire de l'argent. Il faut s'assurer que la somme des entrées et égale à la somme des sorties. Ma transaction doit être à somme nulle.
+
+Dans l'exemple suivant, `Transaction 0` est une transaction sans entée. On peut faire le parallèle avec le block generis qui n'avais pas de `previous`. La `Transaction 1` utilise la sortie de `Transaction 0` comme entrée et produit deux sorties. La `Transaction 1` est écrite et signé par Alice.
 
      Transaction 0                                   Transaction 1
     +----------------------------------------+      +-------------------------------------------+
