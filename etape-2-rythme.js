@@ -30,8 +30,8 @@ const RYTHME = 10;
 
 class Simulation {
   constructor() {
-    this.DIFFICULTY = 3;
-    this.NB_BLOCK_TO_MINE = 10;
+    this.DIFFICULTY = 2;
+    this.NB_BLOCK_TO_MINE = 1000;
 
     // premier block de la chaîne.
     const genesis = new Block(null, "I am groot!");
@@ -39,11 +39,11 @@ class Simulation {
     this.blockchain.add(genesis);
 
     this.participants = [
-      new Participant("Philibert"),
-      new Participant("Bernadette"),
-      new Participant("Christophe"),
-      new Participant("Julie"),
-      new Participant("Fred")
+      new Participant("Philibert",1),
+      new Participant("Bernadette",1),
+      new Participant("Christophe",1),
+      new Participant("Julie",1),
+      new Participant("Fred",4)
     ]
   }
 

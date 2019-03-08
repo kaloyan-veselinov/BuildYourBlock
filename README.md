@@ -57,15 +57,44 @@ J'ai ajouté un fichier `etape-2-rythme.js` qui contient un code permettant de s
 
 ###### Observez la simulation. Que pouvez-vous dire sur le temps de calcul d'un block ?
 
+Assez instable
+
 ###### Essayez de changer la difficulté, que se passe-t-il sur le temps de calcul ?
 
+Ça augmente (beaucoup)
+
 ###### Sur votre machine, quelle est la bonne valeur de la difficulté ?
+
+Autour de 5, sinon à 6 ça se termine jamais
 
 Maintenant, voyons ce qu'il se passe si tous les participants n'ont pas la même puissance de calcul.
 
 Modifiez `etape-2-rythme.js` pour diminuer la difficulté et augmenter le nombre de blocks recherchés à 1000.
 
 ###### Que pouvez-vous dire sur la répartition des blocks ?
+
+```javascript
+this.participants = [
+      new Participant("Philibert",1),
+      new Participant("Bernadette",1),
+      new Participant("Christophe",1),
+      new Participant("Julie",1),
+      new Participant("Fred",4)
+]
+```
+
+```javascript
+Simulation effectué en 2499 millisecondes.
+Moyenne 249.9 millisecondes par block.
+{ 'I am groot!': 1,
+  Bernadette: 129,
+  Fred: 485,
+  Philibert: 135,
+  Julie: 135,
+  Christophe: 116 }
+```
+
+Fred a la moitié des ressources, et mine environ la moitié des blocks.
 
 Modifiez encore `etape-2-rythme.js` pour mettre des puissances de calcul différentes aux participants.
 
