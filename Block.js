@@ -24,10 +24,11 @@ module.exports = class Block extends BlockTool {
     this.data = data;
     this.date = new Date();
     this.id = this.getHash();
+    this.nonce = 0;
   }
 
   stringify(){
-    return this.data.concat(this.date, this.previous);
+    return this.data.concat(this.date, this.previous, this.nonce);
   }
   // Retourne l'identifiant du block en le calculant depuis les données
   getHash() {
@@ -38,9 +39,15 @@ module.exports = class Block extends BlockTool {
   isValid(
     DIFFICULTY // Utile à l'étape 2
   ) {
-    return this.id === this.getHash();
+    let prefix = "0".repeat(DIFFICULTY);
+    return this.id === this.getHash() && this.id.startsWith(prefix);
   }
 
   // Utile à l'étape 2
-  miner(DIFFICULTY) {}
+  miner(DIFFICULTY) {
+    while(!this.isValid(DIFFICULTY)){
+      this.nonce++;
+      this.id = this.getHash();
+    }
+  }
 }
