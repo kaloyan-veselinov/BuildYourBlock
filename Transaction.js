@@ -18,13 +18,14 @@ class Transaction {
   ) {
     this.inputs = inputs;
     this.outputs = outputs;
-    this.id = hash(Arrays.toString(inputs).concat(Arrays.toString(outputs)));
+    this.id = this.getHash();
   }
 
   // Retourne le hash du Tx : hash des inputs + hash des outputs
   getHash() {
     const hashInputs = this.inputs.map((input) => {return input.hash;}).join('');
-    // ...
+    const hashOutputs = this.outputs.map((output) => {return output.hash;}).join('');
+    return hashInputs.concat(hashOutputs);
   }
 }
 
@@ -35,15 +36,16 @@ class Input {
   constructor(tx, index, signature = undefined) {
     this.tx = tx;
     this.index = index;
+    this.signature = signature;
   }
 
   stringify(){
-    return this.tx.id.concat(index), privateKeyString;
+    return this.tx.id.concat(this.index);
   }
 
   // Calcule la signature : tx.id + index
   sign(privateKeyString) {
-    this.signature = RSATools.sign(this.stringify());
+    this.signature = RSATools.sign(this.stringify(), privateKeyString);
   }
 
   // Retourne le hash du Input : tx.id + index
@@ -53,14 +55,14 @@ class Input {
 
   // Retourne le montant de l'output utilisé
   montant() {
-    return this.tx.inputs[this.index].montant;
+    return this.tx.outputs[this.index].montant;
   }
 }
 
 class Output {
   constructor(montant, destinataire) {
     this.montant = montant;
-    this.destinataire =destinataire;
+    this.destinataire = destinataire;
   }
 
   stringify(){
@@ -82,18 +84,19 @@ function buildSimpleTransaction(
   unspentOutputs
 ) {
 
-  const unspentOutputsForMontant = calcUnspentOutputsForMontant(/* ... */);
+  const publicKeyStringSender = RSATools.privateToPublic(privateKeyStringSender);
+  const unspentOutputsForMontant = calcUnspentOutputsForMontant(montant, unspentOutputs, publicKeyStringSender);
 
   const inputs = unspentOutputsForMontant.map((unspentOutput) => {
     // transformez un unspentOutput en input
-    return new Input(/* ... */);
+    return new Input(unspentOutput.tx, unspentOutput.index);
   });
 
   const sommeInputs = inputs.reduce((somme, input) => {
     return somme + input.montant();
   }, 0);
 
-  const outputs = [/* ... */];
+  const outputs = [new Output(montant, publicKeyStringDestinataire), new Output(sommeInputs-montant, publicKeyStringSender)];
 
   return new Transaction(inputs, outputs);
 }
@@ -116,7 +119,7 @@ function calcUnspentOutputsForMontant(montant, unspentOutputs, publicKeyStringSe
     const output = unspentOutput.tx.outputs[unspentOutput.index];
 
     // Je ne sélectionne que les transactions qui m'appartiennent
-    if(output.destinataire === publicKey) {
+    if(output.destinataire === publicKeyStringSender) {
       unspentOutputsForMontant.push(unspentOutput);
       valueUnspentOutputsForMontant += output.montant;
 
@@ -126,6 +129,8 @@ function calcUnspentOutputsForMontant(montant, unspentOutputs, publicKeyStringSe
       }
     }
   }
+
+  console.log(unspentOutputsForMontant);
 
   // Quand on n'a pas assez d'argent, on lance une exception
   throw new Error("Vous n'avez pas assez.");
