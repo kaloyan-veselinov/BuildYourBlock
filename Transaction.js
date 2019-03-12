@@ -101,11 +101,20 @@ function buildSimpleTransaction(
   return new Transaction(inputs, outputs);
 }
 
+
+function calculateWallet(unspentOutputs, publicKey){
+  return unspentOutputs.reduce(function(accumulator, unspentOutput) {
+    const output = unspentOutput.tx.outputs[unspentOutput.index];
+    return accumulator + (output.destinataire === publicKey)? output.montant : 0;
+  });
+}
+
 module.exports = {
   Transaction,
   Input,
   Output,
-  buildSimpleTransaction
+  buildSimpleTransaction,
+  calculateWallet
 }
 
 
